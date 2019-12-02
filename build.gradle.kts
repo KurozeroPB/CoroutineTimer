@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     java
     maven
@@ -23,9 +25,17 @@ dependencies {
 }
 
 tasks {
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
+    }
+
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
+
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
